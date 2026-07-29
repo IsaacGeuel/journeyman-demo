@@ -213,4 +213,9 @@ with gr.Blocks(title="Journeyman") as demo:
 
             notify_btn2.click(notify_signup_2, [role_input, interest_input2], notify_output2)
 
-demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)))
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT", 7860)),
+    pwa=True,
+    favicon_path="static/icon-512.png",  # adjust path to wherever you place the icon
+)
