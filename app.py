@@ -97,12 +97,11 @@ def diagnose_electrical(image, email, description):
         )
         return result["answer"] + disclaimer
     except Exception as e:
-        return (
-            "Something went wrong talking to the AI model. "
-            "Make sure Ollama is running and the 'moondream' model is pulled "
-            f"(run: ollama pull moondream).\n\nError detail: {e}"
-        )
-
+    return (
+        "Something went wrong talking to the AI model. "
+        "This might be a temporary issue with the Moondream API or your "
+        "connection — please try again in a moment.\n\nError detail: {e}"
+    ).format(e=e)
 
 with gr.Blocks(title="Journeyman") as demo:
     gr.Markdown("# Journeyman\nAI that helps skilled workers work faster and safer")
