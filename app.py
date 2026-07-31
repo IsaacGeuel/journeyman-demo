@@ -72,7 +72,6 @@ def diagnose_electrical(image, email, description):
 
     try:
         is_danger = description_flags_danger(description) or check_danger(image)
-
         log_row('signups.csv', {
             'timestamp': datetime.now().isoformat(timespec='seconds'),
             'email': email,
@@ -97,12 +96,11 @@ def diagnose_electrical(image, email, description):
         )
         return result["answer"] + disclaimer
     except Exception as e:
-    return (
-        "Something went wrong talking to the AI model. "
-        "This might be a temporary issue with the Moondream API or your "
-        "connection — please try again in a moment.\n\nError detail: {e}"
-    ).format(e=e)
-
+        return (
+            f"Something went wrong talking to the AI model. This might be a "
+            f"temporary issue with the Moondream API or your connection — "
+            f"please try again in a moment.\n\nError detail: {e}"
+        )   
 with gr.Blocks(title="Journeyman") as demo:
     gr.Markdown("# Journeyman\nAI that helps skilled workers work faster and safer")
 
